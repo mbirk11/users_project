@@ -34,9 +34,11 @@ def user_update(request, pk):
 
 def user_delete(request, pk):
     user = get_object_or_404(UserProfile, pk=pk)
+
     if request.method == 'POST':
         user.delete()
         return redirect('user_list')
+
     return render(request, 'user_profile/user_delete.html', {'user': user})
 
 

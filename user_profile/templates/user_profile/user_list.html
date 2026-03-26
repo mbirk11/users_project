@@ -19,6 +19,10 @@
         <div class="card-actions">
             <a href="{% url 'user_detail' user.pk %}" class="btn btn-secondary" style="flex:1; text-align:center;">View</a>
             <a href="{% url 'user_update' user.pk %}" class="btn btn-primary" style="flex:1; text-align:center;">Edit</a>
+            <form action="{% url 'user_delete' user.pk %}" method="post" style="flex:1; display:flex;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" style="width:100%;">Delete</button>
+            </form>
         </div>
     </div>
     {% endfor %}

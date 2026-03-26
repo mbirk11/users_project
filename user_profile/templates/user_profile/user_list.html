@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}All Users{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Directory</h2>
+    <p style="color: var(--text-muted);">Manage your registered users below</p>
+</div>
+
+{% if users %}
+<div class="grid">
+    {% for user in users %}
+    <div class="card">
+        <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Age:</strong> {{ user.age }} | <strong>Phone:</strong> {{ user.phone }}</p>
+        
+        <div class="card-actions">
+            <a href="{% url 'user_detail' user.pk %}" class="btn btn-secondary" style="flex:1; text-align:center;">View</a>
+            <a href="{% url 'user_update' user.pk %}" class="btn btn-primary" style="flex:1; text-align:center;">Edit</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div style="text-align: center; padding: 3rem;">
+    <h3 style="color: var(--text-muted);">No users found.</h3>
+    <p>Get started by creating a new user profile!</p>
+    <a href="{% url 'user_create' %}" class="btn btn-primary" style="margin-top: 1rem;">Create User</a>
+</div>
+{% endif %}
+{% endblock %}
